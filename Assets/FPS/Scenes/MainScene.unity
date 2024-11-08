@@ -5875,6 +5875,7 @@ GameObject:
   - component: {fileID: 8073978906825032892}
   - component: {fileID: 8073978906825032893}
   - component: {fileID: 8073978906825032894}
+  - component: {fileID: 8073978906825032895}
   m_Layer: 5
   m_Name: GameHUD
   m_TagString: Untagged
@@ -6167,6 +6168,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scopeUI: {fileID: 577067046}
+--- !u!114 &8073978906825032895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790203944389090552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b13fa4ba4c24bb4a816fd502d193543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPanel: {fileID: 8596418510904582542}
+  ammoCountPrefab: {fileID: 645032500860478885, guid: fb727941cbd15634c86dc7769f0e8fde,
+    type: 3}
 --- !u!114 &8118132282568604719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6241,7 +6257,6 @@ MonoBehaviour:
   - {fileID: 2108940892856668698, guid: f8d0f5e493ee9ac458392c291b57caee, type: 3}
   - {fileID: -413232287194739627, guid: a00b3bdb266e3d64492cda057278eca0, type: 3}
   - {fileID: 142663911804009078, guid: 1a025d17fef002e4dbd9db9c6e859d75, type: 3}
-  - {fileID: 51367286716256710, guid: ddfb03ece15a8264598fbf8ae8c76c4a, type: 3}
   weaponParentSocket: {fileID: 1432261321010830765}
   defaultWeaponPosition: {fileID: 1841072762710260398}
   downWeaponPosition: {fileID: 4149389865222750965}

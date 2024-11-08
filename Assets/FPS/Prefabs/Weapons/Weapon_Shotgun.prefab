@@ -264,6 +264,8 @@ MonoBehaviour:
   recoilForce: 0.5
   projectilePrefab: {fileID: 4811085552606293929, guid: f05c7e6fbbfbe824388456bb4abff9d4,
     type: 3}
+  bulletPerShot: 24
+  bulletSpreadAngle: 10
 --- !u!1 &2867801751256125023
 GameObject:
   m_ObjectHideFlags: 0

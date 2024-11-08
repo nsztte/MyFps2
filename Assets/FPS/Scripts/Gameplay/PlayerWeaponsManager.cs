@@ -36,7 +36,9 @@ namespace Unity.FPS.Gameplay
         public int ActiveWeaponIndex { get; private set; }
 
         //무기 교체
-        public UnityAction<WeaponController> OnSwitchToWeapon;  //무기 교체할때마다 등록된 함수 호출
+        public UnityAction<WeaponController> OnSwitchToWeapon;      //무기 교체할때마다 등록된 함수 호출
+        public UnityAction<WeaponController, int> OnAddedWeapon;    //무기 추가할때마다 등록된 함수 호출
+        public UnityAction<WeaponController, int> OnRemoveWeapon;   //장착된 무기를 제거할때마다 등록된 함수 호출
 
         private WeaponSwitchState weaponSwitchState;        //무기 교체시 상태
 
@@ -215,7 +217,7 @@ namespace Unity.FPS.Gameplay
             {
                 //반동이 끝나면 원위치로
                 weaponRecoilLocalPosition = Vector3.Lerp(weaponRecoilLocalPosition, Vector3.zero, recoilRepositionSharpness * Time.deltaTime);
-                accumulateRecoil = weaponRecoilLocalPosition;
+                accumulateRecoil = weaponRecoilLocalPosition;   //반동시 밀리는 양 0으로 초기화
             }
         }
 
@@ -400,14 +402,45 @@ namespace Unity.FPS.Gameplay
                     weaponInstance.SourcePrefab = weaponPrefab.gameObject;
                     weaponInstance.ShowWeapon(false);
 
-                    weaponSlots[i] = weaponInstance;    //슬롯에 추가
+                    //무기장착
+                    OnAddedWeapon?.Invoke(weaponInstance, i);
 
+                    weaponSlots[i] = weaponInstance;    //슬롯에 추가
                     return true;
                 }
             }
             Debug.Log("weaponSlots full");
             return false;
         }
+
+        //weaponSlots에 장착된 무기 제거
+        public bool RemoveWeapon(WeaponController oldWeapon)
+        {
+            for(int i = 0; i < weaponSlots.Length; i++)
+            {
+                //같은 무기 찾아서 제거
+                if(weaponSlots[i] == oldWeapon)
+                {
+                    //제거
+                    weaponSlots[i] = null;
+
+                    OnRemoveWeapon?.Invoke(oldWeapon, i);
+
+                    Destroy(oldWeapon.gameObject);
+
+                    //현재 제거한 무기가 액티브이면 새로운 액티브 무기를 찾는다
+                    if(i == ActiveWeaponIndex)
+                    {
+                        SwitchWeapon(true);
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         //매개변수로 들어온 프리팹으로 생성된 무기 여부
         private WeaponController HasWeapon(WeaponController weaponPrefab)
