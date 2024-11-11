@@ -16,8 +16,8 @@ namespace Unity.FPS.Gameplay
         private float maxLiftTime = 5f;
 
         //이동
-        [SerializeField] private float speed = 20f;
-        [SerializeField] private float gravityDown = 0f;
+        public float speed = 20f;
+        public float gravityDown = 0f;
         public Transform root;
         public Transform tip;   //프로젝타일 헤드
 
@@ -26,7 +26,7 @@ namespace Unity.FPS.Gameplay
         private float ShootTime;
 
         //충돌
-        private float radius = 0.01f;                       //충돌 검사하는 구체의 반경
+        public float radius = 0.01f;                       //충돌 검사하는 구체의 반경
 
         public LayerMask hitableLayers = -1;                //Hit가 가능한 Layer (모든 레이어: -1)
         private List<Collider> ignoredColliders;            //Hit 판정시 무시하는 충돌체 리스트
@@ -37,6 +37,9 @@ namespace Unity.FPS.Gameplay
         private float impactVfxSpawnOffset = 0.1f;
 
         public AudioClip impactSfxClip;                     //타격 효과음
+
+        //데미지
+        public float damage = 20f;
         #endregion
 
         private void OnEnable()
