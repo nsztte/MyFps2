@@ -35,8 +35,8 @@ namespace Unity.FPS.Game
             foreach(var uniqueDamageable in uniqueDamagedHealth.Values)
             {
                 float distance = Vector3.Distance(uniqueDamageable.transform.position, center);
-                float curveDamage = damage * damageRatioOverDistance.Evaluate(distance);
-                Debug.Log($"curveDamage: {curveDamage}");
+                float curveDamage = damage * damageRatioOverDistance.Evaluate(distance / areaOfEffectDistance); //영향받는 거리에 따라 데미지 조절
+                Debug.Log($"distance: {distance}, curveDamage: {curveDamage}");
                 uniqueDamageable.InflictDamage(curveDamage, true, owner);
             }
         }
