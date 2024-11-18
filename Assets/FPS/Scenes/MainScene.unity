@@ -616,6 +616,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2729281214502264976}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &793100025 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6989503427151715484, guid: f77e2130c96652640accf8b9f6990d6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6182853496321966384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &800774717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8855434715677272941, guid: 1bc9e4f49c67a6a41af3e7cb3d30bb43,
@@ -1507,6 +1513,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2729281213819827990}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1569983036 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8855434715677272938, guid: 1bc9e4f49c67a6a41af3e7cb3d30bb43,
+    type: 3}
+  m_PrefabInstance: {fileID: 6961613735177824900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1575841893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2141676431450117668, guid: cd17687759887a0438ee021e51abc9d9,
@@ -1617,6 +1629,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 509d754db50222f46b673c4778f267e4, type: 3}
+--- !u!198 &1651259253 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6989503427151715484, guid: f77e2130c96652640accf8b9f6990d6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4446918502921240039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1659374482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8492437560918690266, guid: 7593818fba43c7f4c8372299ce5e893f,
@@ -2342,6 +2360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5703913080234449641}
+  - component: {fileID: 5703913080234449642}
   m_Layer: 0
   m_Name: DetectionModule
   m_TagString: Untagged
@@ -6261,6 +6280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4512002780002470027}
   - component: {fileID: 5780133721398593161}
+  - component: {fileID: 5780133721398593162}
   m_Layer: 10
   m_Name: Weapon_EyeLazers
   m_TagString: Untagged
@@ -6898,6 +6918,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6140117908226786745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5703913080234449642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782779278433313036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b90e1b38160bcf4bacb0890439bc486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionSourcePoint: {fileID: 1218244856}
+  detectionRange: 20
+  knownTargetTimeout: 4
+  attackRange: 5
 --- !u!82 &5780133721398593161
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6995,6 +7031,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5780133721398593162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512002780002470024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3573e7e1307d484488bddd2a74eac468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRoot: {fileID: 0}
+  switchWeaponSfx: {fileID: 0}
+  shootType: 0
+  maxAmmo: 8
+  delayBetweenShots: 0.5
+  weaponMuzzle: {fileID: 6041060534710647674}
+  muzzleFlashPrefab: {fileID: 0}
+  shootSfx: {fileID: 8300000, guid: 129fc57009bfbb84794f700316e7a248, type: 3}
+  crossHairDefault:
+    CrossHairSprite: {fileID: 0}
+    CrossHairSize: 0
+    CrossHairColor: {r: 0, g: 0, b: 0, a: 0}
+  crossHairTargetInSight:
+    CrossHairSprite: {fileID: 0}
+    CrossHairSize: 0
+    CrossHairColor: {r: 0, g: 0, b: 0, a: 0}
+  aimZoomRatio: 1
+  aimOffset: {x: 0, y: 0, z: 0}
+  recoilForce: 0.5
+  projectilePrefab: {fileID: 0}
+  bulletPerShot: 1
+  bulletSpreadAngle: 0
+  ammoUseOnStartCharge: 1
+  ammoUsageRateWhileCharging: 1
+  lastChargeTriggerTimeStamp: 0
+  ammoReloadRate: 1
+  ammoReloadDelay: 2
+  automaticReload: 1
 --- !u!1 &5782783940260229092
 GameObject:
   m_ObjectHideFlags: 0
@@ -7594,6 +7670,12 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   flashOwnHitDuratoin: 0.2
+  eyeColorMaterial: {fileID: 2100000, guid: e6fdfd4e017234d43ac116abee8fa90a, type: 2}
+  defaultEyeColor: {r: 2.158902e+17, g: 5.9906706e+16, b: 0, a: 1}
+  attackEyeColor: {r: 16.000042, g: 0.1675397, b: 0, a: 1}
+  swapToNextWeapon: 0
+  delayAfterWeaponSwap: 0
+  currentWeaponIndex: 0
 --- !u!195 &6388745616975625575
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7638,6 +7720,11 @@ MonoBehaviour:
   - {fileID: 1463229250}
   - {fileID: 1659374484}
   - {fileID: 1322735565}
+  detectedVfx:
+  - {fileID: 1569983036}
+  - {fileID: 1651259253}
+  - {fileID: 793100025}
+  detectedSfx: {fileID: 8300000, guid: 0a51804ab09d5e54da22d0b2fe5a28d0, type: 3}
 --- !u!114 &6388745616975625577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7651,7 +7738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 0
-  aimPoint: {fileID: 0}
+  aimPoint: {fileID: 5441075677701244964}
 --- !u!223 &6405130531887055415
 Canvas:
   m_ObjectHideFlags: 0
