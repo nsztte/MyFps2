@@ -56,7 +56,7 @@ namespace Unity.FPS.AI
                 if(otherActor.affiliation == actor.affiliation)
                     continue;
 
-                float sqrDistance = (otherActor.aimPoint.position - detectionSourcePoint.position).sqrMagnitude;    //Magnitude 루트 계산, sqrMagnitude 루트 계산 않마
+                float sqrDistance = (otherActor.aimPoint.position - detectionSourcePoint.position).sqrMagnitude;    //Magnitude 루트 계산, sqrMagnitude 루트 계산 x
                 if(sqrDistance < sqrDetectionRange && sqrDistance < closestSqrDistnace)
                 {
                     RaycastHit[] hits = Physics.RaycastAll(detectionSourcePoint.position,
@@ -109,7 +109,7 @@ namespace Unity.FPS.AI
             }
 
             //디텍팅 상태 저장
-            HadKnownTarget = KnownDetectedTarget != null;
+            HadKnownTarget = (KnownDetectedTarget != null);
         }
 
         //적을 감지하면 실행

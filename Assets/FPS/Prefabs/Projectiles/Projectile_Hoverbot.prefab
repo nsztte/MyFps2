@@ -45,15 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de430adf1864e9479e4a5baa9328a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 200
   gravityDown: 0
-  root: {fileID: 0}
-  tip: {fileID: 0}
-  radius: 0.01
+  root: {fileID: 3659995153115176982}
+  tip: {fileID: 1135791333161367127}
+  radius: 0.1
   hitableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  impactVfxPrefab: {fileID: 0}
+  impactVfxPrefab: {fileID: 7655095426451682942, guid: 4d48b487f11e62940a978c7c0c0cbcb4,
+    type: 3}
   impactVfxLifeTime: 5
   impactSfxClip: {fileID: 0}
   damage: 20

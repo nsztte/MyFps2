@@ -78,22 +78,30 @@ namespace Unity.FPS.AI
         public UnityAction OnDetectedTarget;
         public UnityAction OnLostTarget;
 
-        //
+        //Attack
+        public UnityAction OnAttack;
+
         private float orientSpeed = 10f;
         public bool IsTargetInAttackRange => DetectionModule.IsTargetInAttackRange;
 
-        public bool swapToNextWeapon = false;
+        public bool swapToNextWeapon = false;   //true일때만 교체가능
         public float delayAfterWeaponSwap = 0f;
         private float lastTimeWeaponSwaped = Mathf.NegativeInfinity;
 
         public int currentWeaponIndex;
         private WeaponController currentWeapon;
         private WeaponController[] weapons;
+
+        //
+        private EnemyManager enemyManager;
         #endregion
 
         private void Start()
         {
             //참조
+            enemyManager = GameObject.FindObjectOfType<EnemyManager>();
+            enemyManager.RegisterEnemy(this);                           //enemyManager에 등록
+
             Agent = GetComponent<NavMeshAgent>();
             actor = GetComponent<Actor>();
             selfColliders = GetComponentsInChildren<Collider>();
@@ -182,6 +190,9 @@ namespace Unity.FPS.AI
 
         private void OnDie()
         {
+            //enemyManager 리스트에 제거
+            enemyManager.RegisterEnemy(this);
+
             //폭발 효과
             GameObject vfxGo = Instantiate(deathVfxPrefab, deathVfxSpawnPosition.position, Quaternion.identity);
             Destroy(vfxGo, 5f);
@@ -353,10 +364,31 @@ namespace Unity.FPS.AI
             }
         }
 
-        //공격
-        public void TryAttack(Vector3 targetPosition)
+        //공격 - 공격성공, 실패
+        public bool TryAttack(Vector3 targetPosition)
         {
+            //무기 교체시 딜레이 시간동안 공격 불능
+            if(lastTimeWeaponSwaped + delayAfterWeaponSwap >= Time.time)
+            {
+                return false;
+            }
 
+            //무기 shoot
+            bool didFire = GetCurrentWeapon().HandleShootInputs(false, true, false);
+
+            if (didFire && OnAttack != null)
+            {
+                OnAttack?.Invoke();
+
+                //발사를 한번 할 때마다 다음 무기로 교체
+                if(swapToNextWeapon && weapons.Length > 1)
+                {
+                    int nextWeaponIndex = (currentWeaponIndex + 1) % weapons.Length;
+                    SetCurrentWeapon(nextWeaponIndex);
+                }
+            }
+
+            return true;
         }
     }
 }
